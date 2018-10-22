@@ -29,11 +29,10 @@ for i, carte in enumerate(cartes):
     print("  {} - {}".format(i + 1, carte.nom))
 
 # Si il y a une partie sauvegardée, on l'affiche, à compléter
-for carte in cartes:
-	laby = carte.labyrinthe
-	print (laby.grille)
-	print('\n\n\n\n')
-	print (laby.robot)
+#for carte in cartes:
+#	laby = carte.labyrinthe
+#	print (laby.grille)
+#	print (laby.robot)
 # ... Complétez le programme ...
 
 

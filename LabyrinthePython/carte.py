@@ -3,6 +3,7 @@
 """Ce module contient la classe Carte."""
 
 from fonctions import creer_labyrinthe_depuis_chaine
+from Labyrinthe import Labyrinthe 
 
 class Carte:
 

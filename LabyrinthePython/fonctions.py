@@ -10,14 +10,13 @@ from Labyrinthe import Labyrinthe  #fichier puis class
 
 def creer_labyrinthe_depuis_chaine(chaine):
 	elements = {}
-	
 	lignes = chaine.split("\n")
 	for ligne in lignes:
 		for colonne in ligne:
 			if colonne == "X":
-				robot = (lignes.index(ligne), ligne.index(colonne))
+				robot = (lignes.index(ligne), lignes.index(colonne))
 			else:
-				elements[(lignes.index(ligne), ligne.index(colonne))]= str(colonne)
+				elements[(lignes.index(ligne), lignes.index(colonne))]= str(colonne)
 
 	labyrinthe = Labyrinthe(robot, elements)
 	
