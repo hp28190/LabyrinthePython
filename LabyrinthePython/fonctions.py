@@ -15,9 +15,9 @@ def creer_labyrinthe_depuis_chaine(chaine):
 	for ligne in lignes:
 		for colonne in ligne:
 			if colonne == "X":
-				robot = (ligne, colonne)
+				robot = (lignes.index(ligne), ligne.index(colonne))
 			else:
-				elements[(ligne, colonne)]= str(colonne)
+				elements[(lignes.index(ligne), ligne.index(colonne))]= str(colonne)
 
 	labyrinthe = Labyrinthe(robot, elements)
 	

@@ -32,6 +32,8 @@ for i, carte in enumerate(cartes):
 for carte in cartes:
 	laby = carte.labyrinthe
 	print (laby.grille)
+	print('\n\n\n\n')
+	print (laby.robot)
 # ... Complétez le programme ...
 
 
