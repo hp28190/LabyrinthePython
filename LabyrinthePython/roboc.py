@@ -28,11 +28,23 @@ print("Labyrinthes existants :")
 for i, carte in enumerate(cartes):
     print("  {} - {}".format(i + 1, carte.nom))
 
+c = input('Quel labyrinthe voulez vous faire ? (Saisir le chiffre)\n')
+choix = int(c)
+print("\n\n\n\n\n\n\n\n")
+
+print("Pour vous déplacer: saisir la première lettre de la direction voulue (n, s, e, o) suivie du nombre de case choisi \n")
+	
+carte = cartes[choix-1]
+laby = carte.labyrinthe
+print(laby.sortie)
+while laby.robot != laby.sortie:
+	laby.aff_laby()
+	saisie = input("Où voulez vous aller ?")
+
+	
+	
+
 # Si il y a une partie sauvegardée, on l'affiche, à compléter
-#for carte in cartes:
-#	laby = carte.labyrinthe
-#	print (laby.grille)
-#	print (laby.robot)
 # ... Complétez le programme ...
 
 
