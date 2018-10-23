@@ -34,68 +34,76 @@ def calc_deplac (laby, saisie):
 	if len(modif) > 3 or len(modif) < 1 :
 		print('Erreur dans votre saisie, nouveau tour. \n')
 		return laby
-	else 
+	else: 
 		if re.match( r"[nseo]", modif[0]) != None: 	 #Test expression régulières	
 			try:							         #vérifie si chiffre ou non
 				dep = int(modif[1])
 			except:
 				dep = 1
 			
-			pos = laby.robot
+			pos = list(laby.robot)
 			if modif[0] == 'n':
 				while dep > 0:
-					pos[0] += 1
-					if laby[pos] == ' ' or laby[pos] == '.':
-						laby.robot = pos
-						return laby
-					elif laby[pos] == 'U':	
+					pos[0] -= 1
+					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#pos = ok
+						laby.robot = tuple(pos)
+					elif laby.grille[tuple(pos)] == 'U':									#pos = sortie
 						print('Bravo vous êtes sorti du labyrinthe\n')
-						laby.robot = pos
+						laby.robot = tuple(pos)
 						return laby
-					else:
+					else:																	#pos = mur
+						print('Vous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
+						return laby
+					
+					dep -= 1
+				
+				return laby
+				
+			elif modif[0] == 's':
+				while dep > 0:
+					pos[0] += 1
+					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
+						laby.robot = tuple(pos)
+					elif laby.grille[tuple(pos)] == 'U':									#sortie
+						print('Bravo vous êtes sorti du labyrinthe\n')
+						laby.robot = tuple(pos)
+						return laby
+					else:																	#mur
 						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
 						return laby
 					dep -= 1
 					
-			elif modif[0] == 's':
-				while dep > 0:
-					pos[0] -= 1
-					if laby[pos] == ' ' or laby[pos] == '.':
-						laby.robot = pos
-						return laby
-					elif laby[pos] == 'U':	
-						print('Bravo vous êtes sorti du labyrinthe\n')
-						laby.robot = pos
-						return laby
-					else:
-						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
-						return laby
-					dep -= 1
+				return laby
+					
 			elif modif[0] == 'e':
 				while dep > 0:
 					pos[1] += 1
-					if laby[pos] == ' ' or laby[pos] == '.':
-						laby.robot = pos
-						return laby
-					elif laby[pos] == 'U':	
+					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
+						laby.robot = tuple(pos)
+					elif laby.grille[tuple(pos)] == 'U':									#sortie
 						print('Bravo vous êtes sorti du labyrinthe\n')
-						laby.robot = pos
+						laby.robot = tuple(pos)
 						return laby
-					else:
+					else:																	#mur
 						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
 						return laby
 					dep -= 1
+					
+				return laby
+					
 			else:
 				while dep > 0:
 					pos[1] -= 1
-					if laby[pos] == ' ' or laby[pos] == '.':
-						laby.robot = pos
-						return laby
-					elif laby[pos] == 'U':	
+					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
+						laby.robot = tuple(pos)
+					elif laby.grille[tuple(pos)] == 'U':									#sortie
 						print('Bravo vous êtes sorti du labyrinthe\n')
-						laby.robot = pos
+						laby.robot = tuple(pos)
 						return laby
-					else:
+					else:																	#mur
 						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
 						return laby
 					dep -= 1
+					
+				return laby
+					

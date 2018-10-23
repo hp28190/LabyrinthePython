@@ -15,4 +15,11 @@ class Labyrinthe:
 	def aff_laby(self):
 		cle = self.grille.keys()
 		for elem in cle:
-			print (self.grille.get(elem),end='')
+			if elem == self.robot :			#le robot as bougé
+				print('X',end='')
+				
+			elif self.grille[elem] == 'X' and elem != self.robot :
+				print(' ',end='')
+				self.grille[elem] = ' '
+			else:
+				print (self.grille.get(elem),end='')

@@ -9,6 +9,7 @@ Exécutez-le avec Python pour lancer le jeu.
 import os
 import fonctions
 
+from fonctions import calc_deplac
 from carte import Carte
 
 # On charge les cartes existantes
@@ -32,7 +33,7 @@ c = input('Quel labyrinthe voulez vous faire ? (Saisir le chiffre)\n')
 choix = int(c)
 print("\n\n\n\n\n\n\n\n")
 
-print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) suivie du nombre de case choisi (si uen seule case, ne saisir que la lettre)\n")
+print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) suivie du nombre de case choisi (si une seule case, ne saisir que la lettre)\n")
 	
 carte = cartes[choix-1]
 laby = carte.labyrinthe
