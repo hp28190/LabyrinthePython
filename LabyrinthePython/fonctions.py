@@ -8,6 +8,7 @@
 
 from Labyrinthe import Labyrinthe  #fichier puis class
 import re
+import pickle
 
 def creer_labyrinthe_depuis_chaine(chaine):
 	elements = {}
@@ -29,20 +30,25 @@ def creer_labyrinthe_depuis_chaine(chaine):
 	return Labyrinthe(robot, elements, sortie)
 	
 def calc_deplac (laby, saisie):
+	"""
+		Calcul la position du robot en fonction du déplacement saisie par l'utilisateur,
+
+		Ou lance la sauvegarde si elle est demandé par le joueur
+	"""
 	modif = list(saisie)
 	
 	if len(modif) > 3 or len(modif) < 1 :
 		print('Erreur dans votre saisie, nouveau tour. \n')
 		return laby
 	else: 
-		if re.match( r"[nseo]", modif[0]) != None: 	 #Test expression régulières	
-			try:							         #vérifie si chiffre ou non
+		if re.match( r"[nseoNSEO]", modif[0]) != None: 	 #Test expression régulières	
+			try:							         	 #vérifie si chiffre ou non
 				dep = int(modif[1])
 			except:
 				dep = 1
 			
 			pos = list(laby.robot)
-			if modif[0] == 'n':
+			if modif[0].lower() == 'n':
 				while dep > 0:
 					pos[0] -= 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#pos = ok
@@ -59,7 +65,7 @@ def calc_deplac (laby, saisie):
 				
 				return laby
 				
-			elif modif[0] == 's':
+			elif modif[0].lower() == 's':
 				while dep > 0:
 					pos[0] += 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
@@ -76,7 +82,7 @@ def calc_deplac (laby, saisie):
 					
 				return laby
 					
-			elif modif[0] == 'e':
+			elif modif[0].lower() == 'e':
 				while dep > 0:
 					pos[1] += 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
@@ -109,4 +115,20 @@ def calc_deplac (laby, saisie):
 					dep -= 1
 					
 				return laby
-					
+		
+		elif re.match( r"[Qq]", modif[0]) != None:
+			######Lancer la sauvegarde			
+			sauvegarde_partie(laby)
+		else:
+			print('Erreur dans la saisie\n')
+			return laby
+			
+def sauvegarde_partie (objet):
+	""" Fonction de sauvegarde de la partie,
+		Enregistre dans un fichier, avec le préfixe save_
+		Efface l'ancienne partie si il y a deja un fichier existant
+	"""
+	global chemin_carte_ouverte
+
+	with open(chemin_carte_ouverte, 'wb') as fichier:
+		mon_pickler = pickle.Pickler(fichier)

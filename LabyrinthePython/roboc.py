@@ -14,6 +14,7 @@ from carte import Carte
 
 # On charge les cartes existantes
 cartes = []
+noms = []
 for nom_fichier in os.listdir("cartes"):
 	if nom_fichier.endswith(".txt"):
 		chemin = os.path.join("cartes", nom_fichier)
@@ -23,6 +24,7 @@ for nom_fichier in os.listdir("cartes"):
 			# Création d'une carte, à compléter
 			map = Carte(nom_carte, contenu)
 			cartes.append(map)
+			noms.append(nom_carte)
 
 # On affiche les cartes existantes
 print("Labyrinthes existants :")
@@ -32,11 +34,14 @@ for i, carte in enumerate(cartes):
 c = input('Quel labyrinthe voulez vous faire ? (Saisir le chiffre)\n')
 choix = int(c)
 print("\n\n\n\n\n\n\n\n")
-
-print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) suivie du nombre de case choisi [1-9] (si une seule case, ne saisir que la lettre)\n")
-	
 carte = cartes[choix-1]
 laby = carte.labyrinthe
+
+#sauvegarde nom de la carte pour une sauvegarde si besoin
+
+
+print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) \nsuivie du nombre de case choisi [1-9] (si une seule case, ne saisir que la lettre)\nPour quitter, saisissez q\n")
+
 #print(laby.sortie)
 while laby.robot != laby.sortie:
 	laby.aff_laby()
