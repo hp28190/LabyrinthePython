@@ -48,11 +48,11 @@ def calc_deplac (laby, saisie):
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#pos = ok
 						laby.robot = tuple(pos)
 					elif laby.grille[tuple(pos)] == 'U':									#pos = sortie
-						print('Bravo vous êtes sorti du labyrinthe\n')
+						print('\n\n\nBravo vous êtes sorti du labyrinthe\n')
 						laby.robot = tuple(pos)
 						return laby
 					else:																	#pos = mur
-						print('Vous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
+						print('\nVous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
 						return laby
 					
 					dep -= 1
@@ -64,13 +64,14 @@ def calc_deplac (laby, saisie):
 					pos[0] += 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
 						laby.robot = tuple(pos)
-					elif laby.grille[tuple(pos)] == 'U':									#sortie
-						print('Bravo vous êtes sorti du labyrinthe\n')
+					elif laby.grille[tuple(pos)] == 'U':									#pos = sortie
+						print('\n\n\nBravo vous êtes sorti du labyrinthe\n')
 						laby.robot = tuple(pos)
 						return laby
-					else:																	#mur
-						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+					else:																	#pos = mur
+						print('\nVous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
 						return laby
+					
 					dep -= 1
 					
 				return laby
@@ -80,13 +81,14 @@ def calc_deplac (laby, saisie):
 					pos[1] += 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
 						laby.robot = tuple(pos)
-					elif laby.grille[tuple(pos)] == 'U':									#sortie
-						print('Bravo vous êtes sorti du labyrinthe\n')
+					elif laby.grille[tuple(pos)] == 'U':									#pos = sortie
+						print('\n\n\nBravo vous êtes sorti du labyrinthe\n')
 						laby.robot = tuple(pos)
 						return laby
-					else:																	#mur
-						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+					else:																	#pos = mur
+						print('\nVous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
 						return laby
+					
 					dep -= 1
 					
 				return laby
@@ -96,13 +98,14 @@ def calc_deplac (laby, saisie):
 					pos[1] -= 1
 					if laby.grille[tuple(pos)] == ' ' or laby.grille[tuple(pos)] == '.':	#ok
 						laby.robot = tuple(pos)
-					elif laby.grille[tuple(pos)] == 'U':									#sortie
-						print('Bravo vous êtes sorti du labyrinthe\n')
+					elif laby.grille[tuple(pos)] == 'U':									#pos = sortie
+						print('\n\n\nBravo vous êtes sorti du labyrinthe\n')
 						laby.robot = tuple(pos)
 						return laby
-					else:																	#mur
-						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+					else:																	#pos = mur
+						print('\nVous ne pouvez pas passer à travers les murs, seul le roi Boo et Casper le peuvent.\n')
 						return laby
+					
 					dep -= 1
 					
 				return laby

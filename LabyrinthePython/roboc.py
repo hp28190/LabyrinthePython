@@ -33,7 +33,7 @@ c = input('Quel labyrinthe voulez vous faire ? (Saisir le chiffre)\n')
 choix = int(c)
 print("\n\n\n\n\n\n\n\n")
 
-print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) suivie du nombre de case choisi (si une seule case, ne saisir que la lettre)\n")
+print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) suivie du nombre de case choisi [1-9] (si une seule case, ne saisir que la lettre)\n")
 	
 carte = cartes[choix-1]
 laby = carte.labyrinthe
