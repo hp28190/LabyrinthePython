@@ -7,6 +7,7 @@
 """
 
 from Labyrinthe import Labyrinthe  #fichier puis class
+import re
 
 def creer_labyrinthe_depuis_chaine(chaine):
 	elements = {}
@@ -27,4 +28,74 @@ def creer_labyrinthe_depuis_chaine(chaine):
 		
 	return Labyrinthe(robot, elements, sortie)
 	
+def calc_deplac (laby, saisie):
+	modif = list(saisie)
 	
+	if len(modif) > 3 or len(modif) < 1 :
+		print('Erreur dans votre saisie, nouveau tour. \n')
+		return laby
+	else 
+		if re.match( r"[nseo]", modif[0]) != None: 	 #Test expression régulières	
+			try:							         #vérifie si chiffre ou non
+				dep = int(modif[1])
+			except:
+				dep = 1
+			
+			pos = laby.robot
+			if modif[0] == 'n':
+				while dep > 0:
+					pos[0] += 1
+					if laby[pos] == ' ' or laby[pos] == '.':
+						laby.robot = pos
+						return laby
+					elif laby[pos] == 'U':	
+						print('Bravo vous êtes sorti du labyrinthe\n')
+						laby.robot = pos
+						return laby
+					else:
+						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+						return laby
+					dep -= 1
+					
+			elif modif[0] == 's':
+				while dep > 0:
+					pos[0] -= 1
+					if laby[pos] == ' ' or laby[pos] == '.':
+						laby.robot = pos
+						return laby
+					elif laby[pos] == 'U':	
+						print('Bravo vous êtes sorti du labyrinthe\n')
+						laby.robot = pos
+						return laby
+					else:
+						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+						return laby
+					dep -= 1
+			elif modif[0] == 'e':
+				while dep > 0:
+					pos[1] += 1
+					if laby[pos] == ' ' or laby[pos] == '.':
+						laby.robot = pos
+						return laby
+					elif laby[pos] == 'U':	
+						print('Bravo vous êtes sorti du labyrinthe\n')
+						laby.robot = pos
+						return laby
+					else:
+						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+						return laby
+					dep -= 1
+			else:
+				while dep > 0:
+					pos[1] -= 1
+					if laby[pos] == ' ' or laby[pos] == '.':
+						laby.robot = pos
+						return laby
+					elif laby[pos] == 'U':	
+						print('Bravo vous êtes sorti du labyrinthe\n')
+						laby.robot = pos
+						return laby
+					else:
+						print('Vous ne pouvez pas passer à travers les murs, seul Boo le peux.\n')
+						return laby
+					dep -= 1
