@@ -136,7 +136,10 @@ def sauvegarde_partie (objet, chemin_carte_ouverte):
 								#fonction d'affichage modifié pour utiliser un type str pour la sauvegarde
 	cle = objet.grille.keys()
 	for elem in cle:
-		tableau +=objet.grille[elem]
+		if elem == objet.robot:
+			tableau += 'X'
+		else:
+			tableau +=objet.grille[elem]
 	
 	with open ('cartes/save_'+chemin_carte_ouverte+'.txt', 'w') as fichier:
 		fichier.write(tableau)

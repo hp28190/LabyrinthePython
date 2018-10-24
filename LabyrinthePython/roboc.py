@@ -22,15 +22,16 @@ for nom_fichier in os.listdir("cartes"):
 	if nom_fichier.endswith(".txt"):
 		chemin = os.path.join("cartes", nom_fichier)
 		nom_carte = nom_fichier[:-4].lower()
-		if nom_carte[5:].lower() == 'save_':
+		if nom_carte[0:5] == 'save_':
 			print('Voulez vous rejouer la partie précédente ?')
 			check = input('[y/n]')
 			if check == 'y':
 				with open(chemin, 'r') as fichier:
 					contenu = fichier.read()
+					carte = Carte(nom_carte, contenu)
 					laby = carte.labyrinthe
-				
-				remove(chemin)
+					chemin_carte_ouverte = nom_carte[5:-4]
+				os.remove(chemin)
 			else:
 				print('Ok, chargement des autres cartes ...')
 		else:
