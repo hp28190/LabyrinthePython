@@ -26,9 +26,9 @@ for nom_fichier in os.listdir("cartes"):
 			print('Voulez vous rejouer la partie précédente ?')
 			check = input('[y/n]')
 			if check == 'y':
-				with open(chemin, 'rb') as fichier:
-					mon_depickler = pickle.Unpickler(fichier)
-					laby = mon_depickler.load()
+				with open(chemin, 'r') as fichier:
+					contenu = fichier.read()
+					laby = carte.labyrinthe
 				
 				remove(chemin)
 			else:

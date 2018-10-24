@@ -132,11 +132,20 @@ def sauvegarde_partie (objet, chemin_carte_ouverte):
 		Efface l'ancienne partie si il y a deja un fichier existant
 	"""
 	
-	with open('cartes/save_'+chemin_carte_ouverte+'.txt', 'wb') as fichier:
-		mon_pickler = pickle.Pickler(fichier)
-		mon_pickler.dump(objet)
+	tableau=str()
+								#fonction d'affichage modifié pour utiliser un type str pour la sauvegarde
+	cle = objet.grille.keys()
+	for elem in cle:
+		tableau +=objet.grille[elem]
+	
+	with open ('cartes/save_'+chemin_carte_ouverte+'.txt', 'w') as fichier:
+		fichier.write(tableau)
+	
+#	with open('cartes/save_'+chemin_carte_ouverte+'.txt', 'wb') as fichier:
+#		mon_pickler = pickle.Pickler(fichier)
+#		mon_pickler.dump(objet)
 		
-	print('Fin de la sauvegarde')
+#	print('Fin de la sauvegarde')
 		
 		
 		
