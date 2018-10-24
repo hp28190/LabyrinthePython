@@ -9,8 +9,9 @@ Exécutez-le avec Python pour lancer le jeu.
 import os
 import fonctions
 import pickle
+import sys
 
-from fonctions import calc_deplac
+from fonctions import calc_deplac , sauvegarde_partie
 from carte import Carte
 from Labyrinthe import Labyrinthe
 
@@ -62,12 +63,20 @@ else:
 #sauvegarde nom de la carte pour une sauvegarde si besoin
 
 
-print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) \nsuivie du nombre de case choisi [1-9] (si une seule case, ne saisir que la lettre)\nPour quitter, saisissez q\n")
-
+print("Pour vous déplacer: saisir la première lettre de la direction voulue(n, s, e, o) ")
+print("\t\tsuivie du nombre de case choisi [1-9] (si une seule case, ne saisir que la lettre)\n")
+print("Le X représente le robot que vous déplacez, les . sont des portes que vous pouvez traverser")
+print("Le U est l'objectif, la sortie du labyrinthe\n")
+print("Pour quitter, saisissez q\n")
 #print(laby.sortie)
 while laby.robot != laby.sortie:
 	laby.aff_laby()
-	saisie = input("Où voulez vous aller ?")
+	try:
+		saisie = input("Où voulez vous aller ?")
+	except:
+		print('sauvegarde de la partie') 
+		sauvegarde_partie (laby, chemin_carte_ouverte)
+		sys.exit('Fermeture forcée')
 	
 	laby = calc_deplac( laby, saisie, chemin_carte_ouverte) #retourne un laby avec la position du robot
 
