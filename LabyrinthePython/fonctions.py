@@ -9,6 +9,7 @@
 from Labyrinthe import Labyrinthe  #fichier puis class
 import re
 import pickle
+import sys
 
 def creer_labyrinthe_depuis_chaine(chaine):
 	elements = {}
@@ -29,7 +30,7 @@ def creer_labyrinthe_depuis_chaine(chaine):
 		
 	return Labyrinthe(robot, elements, sortie)
 	
-def calc_deplac (laby, saisie):
+def calc_deplac (laby, saisie, chemin_carte_ouverte):
 	"""
 		Calcul la position du robot en fonction du déplacement saisie par l'utilisateur,
 
@@ -118,17 +119,24 @@ def calc_deplac (laby, saisie):
 		
 		elif re.match( r"[Qq]", modif[0]) != None:
 			######Lancer la sauvegarde			
-			sauvegarde_partie(laby)
+			sauvegarde_partie(laby ,chemin_carte_ouverte)
+			print('Vous avez demander la fermeture du programme')
+			sys.exit(0)
 		else:
 			print('Erreur dans la saisie\n')
 			return laby
 			
-def sauvegarde_partie (objet):
+def sauvegarde_partie (objet, chemin_carte_ouverte):
 	""" Fonction de sauvegarde de la partie,
 		Enregistre dans un fichier, avec le préfixe save_
 		Efface l'ancienne partie si il y a deja un fichier existant
 	"""
-	global chemin_carte_ouverte
-
-	with open(chemin_carte_ouverte, 'wb') as fichier:
+	
+	with open('cartes/save_'+chemin_carte_ouverte+'.txt', 'wb') as fichier:
 		mon_pickler = pickle.Pickler(fichier)
+		mon_pickler.dump(objet)
+		
+	print('Fin de la sauvegarde')
+		
+		
+		
